@@ -1,3 +1,5 @@
+// Implements CourseDao — handles course listing and registration queries
+
 package com.university.dao;
 
 import com.university.model.Course;
@@ -10,11 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-// @Repository tells Spring this is a DAO component
 @Repository
 public class CourseDaoImpl implements CourseDao {
 
-    // JdbcTemplate is Spring's helper class for running SQL queries
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -22,7 +22,7 @@ public class CourseDaoImpl implements CourseDao {
     public List<Course> getAllCourses() {
         String sql = "SELECT * FROM courses";
 
-        // RowMapper converts each database row into a Course object
+        // maps each row to a Course object
         return jdbcTemplate.query(sql, new RowMapper<Course>() {
             @Override
             public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -46,7 +46,7 @@ public class CourseDaoImpl implements CourseDao {
     public boolean isAlreadyRegistered(int studentId, int courseId) {
         String sql = "SELECT COUNT(*) FROM registrations WHERE student_id = ? AND course_id = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, studentId, courseId);
-        // If count > 0, student is already registered
+        // count > 0 means already registered
         return count > 0;
     }
 }

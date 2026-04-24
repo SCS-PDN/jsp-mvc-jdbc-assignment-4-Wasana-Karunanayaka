@@ -1,6 +1,7 @@
+// Model class for the Course table
+
 package com.university.model;
 
-// Represents a row in the 'courses' table
 public class Course {
 
     private int courseId;
@@ -8,10 +9,10 @@ public class Course {
     private String instructor;
     private int credits;
 
-    // Default constructor (required by Spring/JDBC)
+    // needed for Spring to create objects automatically
     public Course() {}
 
-    // Getters and Setters
+    // getters and setters
     public int getCourseId() { return courseId; }
     public void setCourseId(int courseId) { this.courseId = courseId; }
 

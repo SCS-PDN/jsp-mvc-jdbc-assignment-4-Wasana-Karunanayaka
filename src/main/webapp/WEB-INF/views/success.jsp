@@ -1,3 +1,4 @@
+<%-- Shows the result after a student tries to register for a course --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -20,12 +21,9 @@
     <div class="container">
         <h2>Registration Result</h2>
 
-        <!-- Display success or already-registered message -->
         <p class="message">${message}</p>
-
         <p style="text-align:center">Student: <strong>${student.name}</strong></p>
 
-        <!-- Link back to courses page -->
         <a href="${pageContext.request.contextPath}/courses" class="back-btn">Back to Courses</a>
     </div>
 </body>

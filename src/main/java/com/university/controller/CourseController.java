@@ -1,3 +1,5 @@
+// Handles course listing and student registration
+
 package com.university.controller;
 
 import com.university.dao.CourseDao;
@@ -16,50 +18,45 @@ import java.util.List;
 @Controller
 public class CourseController {
 
-    // Spring automatically injects the CourseDao implementation
     @Autowired
     private CourseDao courseDao;
 
-    // GET /courses → fetch all courses and display them
     @GetMapping("/courses")
     public String showCourses(HttpSession session, Model model) {
 
-        // If not logged in, redirect back to login page
+        // redirect if not logged in
         Student student = (Student) session.getAttribute("loggedInStudent");
         if (student == null) {
             return "redirect:/login";
         }
 
-        // Fetch all courses from database and pass to JSP
         List<Course> courses = courseDao.getAllCourses();
         model.addAttribute("courses", courses);
         model.addAttribute("student", student);
 
-        return "courses"; // resolves to /WEB-INF/views/courses.jsp
+        return "courses"; // goes to courses.jsp
     }
 
-    // POST /register/{courseId} → enroll student in a course
     @PostMapping("/register/{courseId}")
     public String registerCourse(@PathVariable int courseId,
                                  HttpSession session,
                                  Model model) {
 
-        // If not logged in, redirect back to login page
+        // redirect if not logged in
         Student student = (Student) session.getAttribute("loggedInStudent");
         if (student == null) {
             return "redirect:/login";
         }
 
-        // Check if already registered
+        // prevent duplicate registration
         if (courseDao.isAlreadyRegistered(student.getStudentId(), courseId)) {
             model.addAttribute("message", "You are already registered for this course.");
         } else {
-            // Register the student
             courseDao.registerCourse(student.getStudentId(), courseId);
             model.addAttribute("message", "Successfully registered for the course!");
         }
 
         model.addAttribute("student", student);
-        return "success"; // resolves to /WEB-INF/views/success.jsp
+        return "success"; // goes to success.jsp
     }
 }

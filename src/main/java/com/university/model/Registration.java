@@ -1,8 +1,9 @@
+// Model class for the Registration table (links students to courses)
+
 package com.university.model;
 
 import java.util.Date;
 
-// Represents a row in the 'registrations' table
 public class Registration {
 
     private int regId;
@@ -10,10 +11,10 @@ public class Registration {
     private int courseId;
     private Date date;
 
-    // Default constructor (required by Spring/JDBC)
+    // needed for Spring to create objects automatically
     public Registration() {}
 
-    // Getters and Setters
+    // getters and setters
     public int getRegId() { return regId; }
     public void setRegId(int regId) { this.regId = regId; }
 

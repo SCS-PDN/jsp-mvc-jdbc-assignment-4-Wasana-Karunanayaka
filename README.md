@@ -19,6 +19,29 @@ A Spring MVC web application for managing student course registrations with auth
 - **Database Integration**: MySQL backend with JDBC
 - **Version Control**: Git-based development workflow
 
+
+## Test Credentials
+
+Use these credentials to log in and test the application:
+
+| Student Name        | Email                    | Password  |
+|--------------------|--------------------------|-----------|
+| Wasana Karunanayaka | s21081@sci.pdn.ac.lk    | wasana123 |
+| Nisha Fonseka       | s21180@sci.pdn.ac.lk    | nisha123  |
+
+## Database Configuration
+
+- Database name: `university_db`
+- MySQL username: `root`
+- MySQL password: `password`
+- Port: `3306`
+
+## How to Run
+
+1. Import `university_db` into MySQL and run the table setup SQL
+2. Deploy the WAR on Apache Tomcat 9
+3. Visit: `http://localhost:8080/course-registration/login`
+
 ## Technologies Used
 
 - **Backend**: Spring MVC, JDBC

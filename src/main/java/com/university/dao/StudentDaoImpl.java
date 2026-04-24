@@ -1,3 +1,5 @@
+// Implements StudentDao — handles the actual DB query for student login
+
 package com.university.dao;
 
 import com.university.model.Student;
@@ -10,11 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-// @Repository tells Spring this is a DAO component
 @Repository
 public class StudentDaoImpl implements StudentDao {
 
-    // JdbcTemplate handles all database communication
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -22,7 +22,7 @@ public class StudentDaoImpl implements StudentDao {
     public Student findByEmailAndPassword(String email, String password) {
         String sql = "SELECT * FROM students WHERE email = ? AND `password` = ?";
 
-        // query() returns a list — if empty, login failed
+        // returns a list — we only expect one match
         List<Student> students = jdbcTemplate.query(sql, new Object[]{email, password}, new RowMapper<Student>() {
             @Override
             public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -35,7 +35,7 @@ public class StudentDaoImpl implements StudentDao {
             }
         });
 
-        // Return the student if found, or null if not found
+        // null means login failed
         return students.isEmpty() ? null : students.get(0);
     }
 }

@@ -1,3 +1,4 @@
+<%-- Shows all available courses for the logged-in student --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -22,13 +23,10 @@
 </head>
 <body>
     <div class="container">
-
-        <!-- Header with student name and logout link -->
         <span class="logout"><a href="logout">Logout</a></span>
         <h2>Available Courses</h2>
         <p>Welcome, <strong>${student.name}</strong>! Select a course to register.</p>
 
-        <!-- Loop through courses and display each one -->
         <table>
             <tr>
                 <th>Course Name</th>
@@ -36,13 +34,13 @@
                 <th>Credits</th>
                 <th>Action</th>
             </tr>
+            <%-- loop through courses from the model --%>
             <c:forEach var="course" items="${courses}">
                 <tr>
                     <td>${course.name}</td>
                     <td>${course.instructor}</td>
                     <td>${course.credits}</td>
                     <td>
-                        <!-- Each button submits a POST to /register/{courseId} -->
                         <form action="register/${course.courseId}" method="post">
                             <button type="submit">Register</button>
                         </form>

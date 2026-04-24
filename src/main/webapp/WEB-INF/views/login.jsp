@@ -1,3 +1,4 @@
+<%-- Login page for the university registration system --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,6 @@
     <div class="container">
         <h2>University Login</h2>
 
-        <!-- Login form — submits POST to /login -->
         <form action="login" method="post">
             <label>Email:</label>
             <input type="text" name="email" placeholder="Enter your email" required />
@@ -32,7 +32,7 @@
             <button type="submit">Login</button>
         </form>
 
-        <!-- Show error message if login failed -->
+        <%-- show error if login failed --%>
         <% if (request.getAttribute("error") != null) { %>
             <p class="error">${error}</p>
         <% } %>

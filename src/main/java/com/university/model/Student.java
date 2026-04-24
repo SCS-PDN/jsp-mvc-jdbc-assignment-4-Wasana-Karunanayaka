@@ -1,6 +1,7 @@
+// Model class for the Student table
+
 package com.university.model;
 
-// Represents a row in the 'students' table
 public class Student {
 
     private int studentId;
@@ -8,10 +9,10 @@ public class Student {
     private String email;
     private String password;
 
-    // Default constructor (required by Spring/JDBC)
+    // needed for Spring to create objects automatically
     public Student() {}
 
-    // Getters and Setters
+    // getters and setters
     public int getStudentId() { return studentId; }
     public void setStudentId(int studentId) { this.studentId = studentId; }
 
